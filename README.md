@@ -1,2 +1,3 @@
-# shaquille.djairin.github.io
-portfolio website
+# winc-projects
+All assignments that i made during Winc Academy
+
