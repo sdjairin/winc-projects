@@ -1,0 +1,56 @@
+.nav {
+  margin: 1rem 1rem 0 1rem;
+}
+
+.nav .nav-button {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.nav .nav-button:hover {
+  color: #d91656;
+  background-color: transparent;
+}
+
+.nav .back-button {
+  background-color: #d91656;
+  color: white;
+}
+
+.nav .back-button:hover {
+  background-color: #640d5f;
+}
+
+.drawer-header {
+  color: #d91656;
+}
+
+.drawer .drawer-button {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.drawer .drawer-button:hover {
+  color: #d91656;
+  background-color: transparent;
+}
+
+.drawer .accordion .accordion-button {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.drawer .accordion .accordion-button:hover {
+  color: #d91656;
+  background-color: transparent;
+}
+
+.drawer .accordion .lv2-accordion-button {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.drawer .accordion .lv2-accordion-button:hover {
+  color: #d91656;
+  background-color: transparent;
+}
