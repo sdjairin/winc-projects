@@ -16,8 +16,18 @@ import {
 export const RecipePage = ({ recipe, clickFn }) => {
   return (
     <Center h="100vh" flexDir="column" p={4} position="relative">
-      <Box position="absolute" top={4} left={4}>
-        <Button w="fit-content" onClick={() => clickFn()}>
+      <Box
+        position="relative"
+        margin={{ base: 4, md: 8 }}
+        zIndex={1}
+        right={{ base: "25%", md: "40%" }}
+      >
+        <Button
+          w={{ base: "fit-content", md: "auto" }}
+          fontSize={{ base: "sm", md: "xl" }}
+          padding={{ base: 2, md: 8 }}
+          onClick={() => clickFn()}
+        >
           Back to overview
         </Button>
       </Box>
@@ -26,6 +36,7 @@ export const RecipePage = ({ recipe, clickFn }) => {
         w={{ base: "90%", sm: "80%", md: "3xl" }}
         h="auto"
         overflowY="auto"
+        mt={{ base: 4, md: 8 }}
       >
         <CardBody>
           <Image
