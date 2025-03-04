@@ -17,21 +17,21 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import EventDetail from "../components/EventDetail";
 
 export const loader = async ({ params }) => {
-  const eventResponse = await fetch(
-    `http://localhost:3000/events/${params.eventId}`
-  );
-  const categoriesResponse = await fetch("http://localhost:3000/categories");
-  const usersResponse = await fetch("http://localhost:3000/users");
+  try {
+    const eventResponse = await fetch(
+      `http://localhost:3000/events/${params.eventId}`
+    );
+    const categoriesResponse = await fetch("http://localhost:3000/categories");
+    const usersResponse = await fetch("http://localhost:3000/users");
 
-  if (!eventResponse.ok || !categoriesResponse.ok || !usersResponse.ok) {
-    throw new Error("Failed to fetch events or categories");
+    const event = await eventResponse.json();
+    const categories = await categoriesResponse.json();
+    const users = await usersResponse.json();
+
+    return { event, categories, users };
+  } catch (error) {
+    console.error("Failed to load data", error);
   }
-
-  const event = await eventResponse.json();
-  const categories = await categoriesResponse.json();
-  const users = await usersResponse.json();
-
-  return { event, categories, users };
 };
 
 export const EventPage = () => {
@@ -53,27 +53,31 @@ export const EventPage = () => {
   };
 
   const handleDelete = async () => {
-    const response = await fetch(`http://localhost:3000/events/${event.id}`, {
-      method: "DELETE",
-    });
+    try {
+      const response = await fetch(`http://localhost:3000/events/${event.id}`, {
+        method: "DELETE",
+      });
 
-    if (response.ok) {
-      toast({
-        title: "Event deleted",
-        description: "The event was successfully deleted",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-      navigate("/");
-    } else {
-      toast({
-        title: "Failed to delete event",
-        description: "There was an error while deleting the event",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
+      if (response.ok) {
+        toast({
+          title: "Event deleted",
+          description: "The event was successfully deleted",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        navigate("/");
+      } else {
+        toast({
+          title: "Failed to delete event",
+          description: "There was an error while deleting the event",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to delete event", error);
     }
   };
 
@@ -109,3 +113,5 @@ export const EventPage = () => {
     </Box>
   );
 };
+
+export default EventPage;
