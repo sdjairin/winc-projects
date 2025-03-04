@@ -114,4 +114,4 @@ export const EventPage = () => {
   );
 };
 
-export default EventPage;
+
