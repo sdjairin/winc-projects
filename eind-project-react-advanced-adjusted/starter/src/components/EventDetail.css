@@ -1,0 +1,93 @@
+.event-detail .event-detail-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 3rem;
+}
+
+.event-detail .event-detail-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-detail .event-detail-content .event-detail-card {
+  position: relative;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  background-color: white;
+  color: #d91656;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.event-detail-card .event-detail-img {
+  width: 100%;
+  height: 300px; /* Adjust the height as needed */
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.event-detail-card .event-detail-time {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 1px;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.event-detail-card .event-detail-date {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 1px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.event-detail-card .event-detail-time .icon,
+.event-detail-card .event-detail-date .icon {
+  margin-right: 8px; /* Add some space between the icon and the text */
+}
+
+.event-detail-card .event-detail-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Add some space between badges */
+  margin-top: 8px;
+  position: absolute;
+  top: 360px;
+  left: 70%;
+  color: black;
+}
+
+.event-detail-card .event-detail-categories .badge {
+  background-color: #640d5f; /* Set the background color */
+  color: white; /* Set the text color */
+  padding: 4px 8px; /* Add some padding */
+  border-radius: 4px; /* Add border radius for rounded corners */
+  font-weight: bold; /* Make the text bold */
+  width: fit-content; /* Make the badge width fit the content */
+  gap: 4px; /* Add some space between the badge and the text */
+}
+
+.event-detail-card .event-detail-description {
+  font-style: italic;
+  font-size: large;
+  font-weight: 800;
+  display: inline-block;
+  background-color: #d91656;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  position: absolute;
+  top: 275px;
+  border-radius: 4px;
+}
