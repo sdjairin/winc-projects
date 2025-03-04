@@ -1,3 +1,12 @@
+.event-detail .back-button {
+  display: flex;
+  width: 100px;
+  background-color: #e9762b;
+  color: white;
+  position: absolute;
+  top: 0;
+}
+
 .event-detail .event-detail-heading {
   display: flex;
   justify-content: center;
@@ -18,8 +27,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
-  background-color: white;
-  color: #d91656;
+  background-color: #0d4715;
+  color: #f1f0e9;
   overflow: hidden;
   transition: transform 0.2s;
 }
@@ -34,60 +43,123 @@
   padding: 0;
 }
 
-.event-detail-card .event-detail-time {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  margin-bottom: 1px;
-  padding: 0.5rem;
-  font-size: 1.5rem;
-}
-
+.event-detail-card .event-detail-time,
 .event-detail-card .event-detail-date {
   display: flex;
   align-items: center;
   font-weight: bold;
-  margin-bottom: 1px;
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: medium;
+}
+
+.event-detail-card .event-detail-date {
+  margin: 0 0 1px;
+}
+
+.event-detail-card .event-detail-location {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  padding: 0.5rem;
+  font-size: medium;
 }
 
 .event-detail-card .event-detail-time .icon,
-.event-detail-card .event-detail-date .icon {
-  margin-right: 8px; /* Add some space between the icon and the text */
+.event-detail-card .event-detail-date .icon,
+.event-detail-card .event-detail-location .icon {
+  margin-right: 8px;
+  color: #e9762b; /* Add some space between the icon and the text */
 }
 
 .event-detail-card .event-detail-categories {
-  display: flex;
+  display: flexbox;
   flex-wrap: wrap;
-  gap: 8px; /* Add some space between badges */
+  flex-direction: column;
   margin-top: 8px;
-  position: absolute;
-  top: 360px;
-  left: 70%;
-  color: black;
+  color: #f1f0e9;
+  font-weight: bold;
+}
+
+.event-detail-card .event-detail-categories .categories-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100px;
+  margin-bottom: 0.5rem;
 }
 
 .event-detail-card .event-detail-categories .badge {
-  background-color: #640d5f; /* Set the background color */
-  color: white; /* Set the text color */
-  padding: 4px 8px; /* Add some padding */
-  border-radius: 4px; /* Add border radius for rounded corners */
-  font-weight: bold; /* Make the text bold */
-  width: fit-content; /* Make the badge width fit the content */
-  gap: 4px; /* Add some space between the badge and the text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9762b;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  width: fit-content;
+  gap: 4px;
+}
+
+.event-detail-card .event-detail-categories .user-details {
+  display: flex;
+  align-items: flex-end;
 }
 
 .event-detail-card .event-detail-description {
   font-style: italic;
-  font-size: large;
   font-weight: 800;
-  display: inline-block;
-  background-color: #d91656;
+  display: flexbox;
+  background-color: #e9762b;
   color: white;
   text-align: center;
   padding: 0.5rem;
-  position: absolute;
-  top: 275px;
   border-radius: 4px;
+  position: relative;
+  bottom: px;
+}
+
+.event-detail-card .event-detail-buttons .edit-button {
+  background-color: #e9762b;
+  color: white;
+  width: fit-content;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.event-detail-card .event-detail-buttons .delete-button {
+  background-color: red;
+  color: white;
+  width: fit-content;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .event-detail-card .event-detail-categories .categories-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (min-width: 792px) {
+  .event-detail .back-button {
+    position: absolute;
+    top: 0;
+    left: 20%;
+  }
+}
+
+@media (min-width: 1279px) {
+  .event-detail .back-button {
+    position: absolute;
+    top: 0;
+    left: 30%;
+  }
 }
