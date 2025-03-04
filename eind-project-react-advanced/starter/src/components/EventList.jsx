@@ -13,20 +13,19 @@ import {
   MenuList,
   MenuItem,
   Button,
+  Badge,
+  Stack,
 } from "@chakra-ui/react";
 import { TfiAngleDown } from "react-icons/tfi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchField from "./SearchField";
 import "./EventList.css";
 
 const EventList = ({ events, categories }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const navigate = useNavigate();
+  const [searchField, setSearchField] = useState("");
 
-  const NavigateToEvent = (eventId) => {
-    navigate(`/event/${eventId}`);
-  };
-
+  //----------------------------------------------------
   // Map events to include category names
   const eventsWithCategoryNames = events.map((event) => {
     const categoryNames = event.categoryIds
@@ -40,7 +39,7 @@ const EventList = ({ events, categories }) => {
         return category ? category.name : "Unknown";
       });
 
-    return { ...event, categoryNames };
+    return { ...event, categoryNames: categoryNames || [] };
   });
 
   // Filter events based on selected category
@@ -62,6 +61,29 @@ const EventList = ({ events, categories }) => {
     return `${start} - ${end} `;
   };
 
+  const matchedSearch = filteredEvents.filter((event) => {
+    const query = searchField.toLowerCase();
+    const titleMatch = event.title.toLowerCase().includes(query);
+    const descriptionMatch = event.description.toLowerCase().includes(query);
+    const dateMatch = formatEventDate(event.startTime, event.endTime).includes(
+      query
+    );
+    const timeMatch = formatEventTime(event.startTime, event.endTime).includes(
+      query
+    );
+    const categoryMatch = event.categoryNames.some((categoryName) =>
+      categoryName.toLowerCase().includes(query)
+    );
+    return (
+      titleMatch || descriptionMatch || dateMatch || timeMatch || categoryMatch
+    );
+  });
+
+  //-------------------handle functions-------------------
+  const handleChange = (event) => {
+    setSearchField(event.target.value);
+  };
+
   return (
     <Box w="80%" m="auto" className="event-list">
       <Heading mb="4" className="event-list-heading">
@@ -69,9 +91,8 @@ const EventList = ({ events, categories }) => {
       </Heading>
 
       <SearchField
-        events={events}
-        NavigateToEvent={NavigateToEvent}
-        SearchField={SearchField}
+        searchField={searchField}
+        handleChange={handleChange}
         className="search-field"
       />
       <Flex mb="4" wrap="wrap" gap="2" className="menu-container">
@@ -82,7 +103,8 @@ const EventList = ({ events, categories }) => {
             className="menu-button"
           >
             {selectedCategory
-              ? categories.find((cat) => cat.id === selectedCategory)?.name
+              ? categories.find((cat) => cat.id === selectedCategory)?.name ||
+                "Select category"
               : "Select category"}
           </MenuButton>
           <MenuList>
@@ -106,8 +128,8 @@ const EventList = ({ events, categories }) => {
       </Flex>
 
       <Box className="event-cards">
-        {filteredEvents.length > 0 ? (
-          filteredEvents.map((event) => (
+        {matchedSearch.length > 0 ? (
+          matchedSearch.map((event) => (
             <Link to={`/event/${event.id}`} key={event.id}>
               <Card className="event-card">
                 <Image src={event.image} alt={event.title} />
@@ -124,9 +146,21 @@ const EventList = ({ events, categories }) => {
                   <Text mb="2" className="event-time">
                     {formatEventTime(event.startTime, event.endTime)}
                   </Text>
-                  <Text className="event-category">
-                    Category: {event.categoryNames.join(", ")}
-                  </Text>
+                  <Stack direction="row" spacing={2}>
+                    <Text className="event-category">Category:</Text>
+                    {event.categoryNames.map((categoryName, index) => (
+                      <Badge
+                        key={index}
+                        w="fit-content"
+                        color="white"
+                        bg="#e9762b"
+                        p="1"
+                        borderRadius="5"
+                      >
+                        {categoryName}
+                      </Badge>
+                    ))}
+                  </Stack>
                 </CardBody>
               </Card>
             </Link>
