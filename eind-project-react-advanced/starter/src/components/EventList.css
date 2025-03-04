@@ -1,10 +1,11 @@
-.event-card {
+.event-cards .event-card {
   position: relative;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
-  background-color: white;
+  background-color: #41644a;
+  color: white;
   overflow: hidden;
   transition: transform 0.2s;
   cursor: pointer;
@@ -12,7 +13,7 @@
 
 .event-card:hover {
   transform: translateY(-5px);
-  background-color: #d91656;
+  background-color: #0d4715;
   color: white;
 }
 
@@ -43,21 +44,21 @@
 }
 
 .event-list .menu-button {
-  background-color: #d91656;
+  background-color: #0d4715;
   color: white;
 }
 
 .event-list .menu-button:hover {
-  background-color: #640d5f;
+  background-color: #e9762b;
 }
 
 .event-list .menu-button[aria-expanded="true"] {
-  background-color: #640d5f;
+  background-color: #e9762b;
   color: white;
 }
 
 .event-list .menu-item:hover {
-  background-color: #d91656;
+  background-color: #0d4715;
   color: white;
 }
 
@@ -66,6 +67,27 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 16px;
+}
+
+.event-list .search-field {
+  margin: 0 auto 1em;
+  max-width: 400px;
+  border: 2px solid #0d4715;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 16px;
+  height: 3rem;
+  transition: border-color 0.2s ease;
+}
+
+.event-list .search-field:hover {
+  border-color: #e9762b;
+}
+
+.event-list .search-field:focus {
+  border-color: #e9762b; /* Set the border color when focused */
+  box-shadow: none;
+  outline: none;
 }
 
 @media (min-width: 768px) {
@@ -82,5 +104,11 @@
 
   .event-card {
     margin-bottom: 0; /* Remove bottom margin for grid items */
+  }
+
+  .event-list .search-field {
+    max-width: 600px;
+    display: flex;
+    justify-content: flex-start;
   }
 }
