@@ -1,3 +1,3 @@
 # winc-projects
-All assignments that i made during Winc Academy
+All projects that i made during Winc Academy
 
